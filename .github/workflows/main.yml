@@ -1,0 +1,30 @@
+name: main
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Pull sphinx image
+        run: |
+          docker pull ghcr.io/ldalek/docker-sphinx-latex
+
+      - name: Build GH pages
+        run: |
+          make gh-pages
+
+      - name: Deploy GH pages
+        uses: JamesIves/github-pages-deploy-action@v4.7.6
+        with:
+          branch: gh-pages
+          folder: html
