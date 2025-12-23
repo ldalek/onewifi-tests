@@ -23,3 +23,10 @@ extensions = []
 
 html_theme = 'sphinx_rtd_theme'
 # html_static_path = ['_static']
+
+latex_documents = [
+    ('index', f'{project}.tex',
+     u'OneWifi memory footprint',
+     f'{author}',
+     'howto'),
+]

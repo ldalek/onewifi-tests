@@ -19,3 +19,21 @@ gh-pages:
 clean::
 	[ -d html ] && rm -r html || true
 	[ -d doctrees ] && rm -r doctrees || true
+
+pdf:
+	docker run --network none \
+		-t --rm -u `id -u`:`id -g` \
+		-w $$PWD \
+		-v $$PWD:$$PWD:rw \
+		ghcr.io/ldalek/docker-sphinx-latex \
+		sphinx-build -M latex . .
+	docker run --network none \
+		-t --rm -u `id -u`:`id -g` \
+		-w $$PWD \
+		-v $$PWD:$$PWD:rw \
+		ghcr.io/ldalek/docker-sphinx-latex \
+		make -C latex all
+
+clean::
+	[ -d latex ] && rm -r latex || true
+	[ -d doctrees ] && rm -r doctrees || true
