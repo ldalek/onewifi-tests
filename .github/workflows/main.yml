@@ -19,24 +19,12 @@ jobs:
         run: |
           docker pull ghcr.io/ldalek/docker-sphinx-latex
 
-      - name: Build GH pages
-        run: |
-          make gh-pages
-
-      - name: Deploy GH pages
-        uses: JamesIves/github-pages-deploy-action@v4.7.6
-        with:
-          branch: gh-pages
-          folder: html
-
       - name: Build PDF document
         run: |
           make pdf
-          mkdir deploy
-          cp latex/memfootprint.pdf deploy/memfootprint.pdf
 
-      - name: Deploy PDF document
-        uses: JamesIves/github-pages-deploy-action@v4.7.6
+      - name: Deploy PDF document (artifact)
+        uses: actions/upload-artifact@v6
         with:
-          branch: deploy
-          folder: deploy
+          name: memfootprint.pdf
+          path: latex/memfootprint.pdf
