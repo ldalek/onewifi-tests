@@ -7,7 +7,17 @@ OneWifi memory footprint report
 ..    :maxdepth: 2
 ..    :caption: Contents:
 
+Static memory usage
+===================
+
 TODO
+
+Main sections
+-------------
+
+TODO
+
+.. include:: results.rst
 
 .. Indices and tables
 .. ==================
